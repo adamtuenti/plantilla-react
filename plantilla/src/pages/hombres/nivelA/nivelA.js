@@ -59,7 +59,7 @@ export default function NivelA() {
     }
 
     return (
-        <div style={{ padding: "28.5px" }}>
+        <div style={{ paddingLeft: '24.5px', paddingRight: '24.5px' }}>
 
 
 
@@ -83,7 +83,7 @@ export default function NivelA() {
 
                     <div>
 
-                        <p className='seleccione'>Hombres</p>
+                        <p className='seleccione'>Para él</p>
 
                         <Row style={{ textAlign: 'center' }}>
 
@@ -95,7 +95,7 @@ export default function NivelA() {
                                     <Col lg='3' md='3' xs='12' style={{ marginTop: '14.5px' }}>
 
 
-                                        <Card onClick={() => { irAlSiguienteNivel('B', data.Id, data) }} style={{ width: '92.5%', marginLeft: 'auto', marginRight: 'auto', height: '450px' }}>
+                                        <Card onClick={() => { irAlSiguienteNivel('B', data.Id, data) }} style={{ width: '97.5%', marginLeft: 'auto', marginRight: 'auto', height: '450px' }}>
 
                                             <Card.Img className='imagenA' variant='top' src={data.Imagen} />
 
@@ -131,66 +131,66 @@ export default function NivelA() {
 
                     :
 
-                    
+
 
 
 
 
                     < div >
 
-                            <p className='seleccione'>Hombres</p>
+                        <p className='seleccione'>Para él</p>
 
-                            <Row style={{ textAlign: 'center' }}>
-
-
-
-                                {
-                                    [{}, {}, {}, {}].map((data) => (
-
-                                        <Col lg='3' md='3' xs = '12' style={{ marginTop: '14.5px' }}>
-
-
-                                            <Card style={{ width: '92.5%', marginLeft: 'auto', marginRight: 'auto', height: '450px' }}>
-
-                                                <Skeleton className='imagenA' variant='top' height={353}/>
-
-                                                <Card.Body className = 'mx-0 px-0' style = {{ textAlign: 'left', padding: 'none' }}>
-                                                    <Skeleton width={225} height = {24}/>
-                                                    <Skeleton width={175} height={19}/>
-
-                                                </Card.Body>
-
-                                            </Card>
+                        <Row style={{ textAlign: 'center' }}>
 
 
 
-                                        </Col>
+                            {
+                                [{}, {}, {}, {}].map((data) => (
 
-                                    )
-                                    )
-                                }
+                                    <Col lg='3' md='3' xs='12' style={{ marginTop: '14.5px' }}>
 
 
+                                        <Card style={{ width: '92.5%', marginLeft: 'auto', marginRight: 'auto', height: '450px' }}>
+
+                                            <Skeleton variant='top' height={353} />
+
+                                            <Card.Body className='mx-0 px-0' style={{ textAlign: 'left', paddingLeft: '7.5px' }}>
+                                                <Skeleton width={225} height={24} />
+                                                <Skeleton width={175} height={19} />
+
+                                            </Card.Body>
+
+                                        </Card>
+
+
+
+                                    </Col>
+
+                                )
+                                )
+                            }
 
 
 
 
-                            </Row>
+
+
+                        </Row>
 
 
 
-       
-
-
-                        </div>
 
 
 
-                    }
+                    </div>
 
 
 
-        </div>
+                }
+
+
+
+            </div>
 
 
 

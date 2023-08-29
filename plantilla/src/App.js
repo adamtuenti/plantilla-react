@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import RouterPage from './router'
 import Header from './share/header/header';
 
+import { CartProvider } from "./hooks/useContext"
+
 
 function App() {
 
@@ -14,9 +16,15 @@ function App() {
 
 
 
+      <CartProvider>
+
+
+
       <Header/>
 
       <RouterPage/>
+
+      </CartProvider>
 
   
 

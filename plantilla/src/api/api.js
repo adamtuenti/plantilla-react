@@ -72,11 +72,28 @@ export const getNivelB = async (idA) => {
   return dataFinal
 }
 
+export const getCarouselHome = async () => {
+
+  const collection_ref = collection(db, 'Carousel')
+  const query_ref = query(collection_ref, where("Disponible", '==', true))
+  let dataFinal = []
+  const datos = await getDocs(query_ref)
+
+  datos.forEach((doc) => {
+    dataFinal.push(doc.data())
+  })
+
+  console.log(dataFinal)
+
+  return dataFinal
+
+}
 
 
-export const getDetalleFotoA = async (id) => {
+
+export const getDetalleFotoA = async (id, color) => {
   const collection_ref = collection(db, 'FotosDetalleA')
-  const query_ref = query(collection_ref, where("Id", "==", id))
+  const query_ref = query(collection_ref, where("Id", "==", id), where("Color", "==", color))
   let dataFinal = []
   const datos = await getDocs(query_ref)
 

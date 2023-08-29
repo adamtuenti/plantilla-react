@@ -15,63 +15,24 @@
 }
 
 .imagenA{
-    width: 100%;
+    width: 100% !important;
     text-align: center !important;
     margin-left: auto;
     margin-right: auto;
-    height: 78.5%;
+    height: 78.5% !important;
     padding: 3.5px;
 }
 
 
 
-.bottonB{
-    width: 254.5px;
-    height: 225px;
-    background-color: transparent !important;
-    border-color: black;
-    padding: 14.5px;
-    margin-right: 35.5px !important;
-}
-
-.imagenB{
-    width: 225px;
-    height: 172px;
-}
-
-
-
-
-
-.loading{
-    font-size: 24.5px;
-    text-align: center;
-}
-
-
-
-.loadingImage{
-    width: 275px;
-    text-align: center;
-    margin-left: auto;
-}
-
 
 
 .seleccione{
-    font-size: 19.5px;
-    text-align: left;
+    font-size: 24.5px !important;
+    text-align: center !important;
     font-style: italic;
     line-height: 24.5px;
+    margin-top: 34.5px
 }
 
 
-
-
-.seleccioneMujeres{
-    margin-top: 45.5px;
-    font-size: 19.5px;
-    text-align: left;
-    font-style: italic;
-    line-height: 24.5px;
-}

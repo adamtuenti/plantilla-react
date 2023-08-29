@@ -15,18 +15,14 @@
 }
 
 .imagenA{
-    width: 100%;
-    text-align: center !important;
-    margin-left: auto;
-    margin-right: auto;
-    height: 78.5%;
-    padding: 3.5px;
+    width: 225px;
+    height: 172px;
 }
 
 
 
 .bottonB{
-    width: 254.5px;
+    width: 350px;
     height: 225px;
     background-color: transparent !important;
     border-color: black;
@@ -59,19 +55,12 @@
 
 
 .seleccione{
-    font-size: 19.5px;
-    text-align: left;
-    font-style: italic;
-    line-height: 24.5px;
+    font-size: 24px;
+    text-align: center;
 }
 
 
 
-
-.seleccioneMujeres{
-    margin-top: 45.5px;
-    font-size: 19.5px;
-    text-align: left;
-    font-style: italic;
-    line-height: 24.5px;
+.colSkeletonCarousel{
+    text-align: center;
 }
