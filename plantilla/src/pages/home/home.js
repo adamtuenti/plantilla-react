@@ -12,6 +12,7 @@ import PortadaPequena from "../../share/images/eren.png";
 export default function Home() {
     const history = useNavigate();
     const [datosCarousel, setDatosCarousel] = useState([]);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
 
     let tamanoMaximo = 750;
     let tamanoPantalla = window.innerWidth;
@@ -57,9 +58,31 @@ export default function Home() {
                                 slidesToShow={window.innerWidth <= tamanoMaximo ? 1 : 3}
                                 scrollOnDevice={false}
                             >
-                                {datosCarousel.map((dato) => (
-                                    <div style={{ width: '100%', textAlign: 'center' }} onClick={() => { history('/hombres/paso2', { state: { data: { Titulo: dato.Titulo, Id: dato.Id } } }) }}>
-                                        <img id='domicilio' className='miniIconos' style={{ width: '435px', height: '554px' }} src={dato.Imagen} />
+                                {datosCarousel.map((dato, index) => (
+                                    <div
+                                        style={{
+                                            width: '100%',
+                                            textAlign: 'center',
+                                            cursor: 'pointer',
+                                            transform: `scale(${hoveredIndex === index ? 1.05 : 1})`,
+                                            transition: 'transform 0.3s ease-in-out'
+                                        }}
+                                        onMouseEnter={() => setHoveredIndex(index)}
+                                        onMouseLeave={() => setHoveredIndex(null)}
+                                        key={dato.Id}
+                                    >
+                                        <img
+                                            id='domicilio'
+                                            className='miniIconos'
+                                            style={{
+                                                width: '435px',
+                                                height: '554px',
+                                                maxWidth: '100%'
+                                            }}
+                                            src={dato.Imagen}
+                                            alt={dato.Titulo}
+                                            onClick={() => { history('/hombres/paso2', { state: { data: { Titulo: dato.Titulo, Id: dato.Id } } }) }}
+                                        />
                                         <p style={{ fontSize: '17.75px', marginTop: '14.5px' }}>{dato.Titulo}</p>
                                     </div>
                                 ))}
@@ -110,9 +133,30 @@ export default function Home() {
                                 slidesToShow={window.innerWidth <= tamanoMaximo ? 1 : 3}
                                 scrollOnDevice={false}
                             >
-                                {datosCarousel.map((dato) => (
-                                    <div style={{ width: '100%', textAlign: 'center' }}>
-                                        <img id='domicilio' className='miniIconos' style={{ width: '245px', height: '342px' }} src={dato.Imagen} />
+                                {datosCarousel.map((dato, index) => (
+                                    <div
+                                        style={{
+                                            width: '100%',
+                                            textAlign: 'center',
+                                            cursor: 'pointer',
+                                            transform: `scale(${hoveredIndex === index ? 1.05 : 1})`,
+                                            transition: 'transform 0.3s ease-in-out'
+                                        }}
+                                        onMouseEnter={() => setHoveredIndex(index)}
+                                        onMouseLeave={() => setHoveredIndex(null)}
+                                        key={dato.Id}
+                                    >
+                                        <img
+                                            id='domicilio'
+                                            className='miniIconos'
+                                            style={{
+                                                width: '245px',
+                                                height: '342px',
+                                                maxWidth: '100%'
+                                            }}
+                                            src={dato.Imagen}
+                                            alt={dato.Titulo}
+                                        />
                                     </div>
                                 ))}
                             </InfiniteCarousel>

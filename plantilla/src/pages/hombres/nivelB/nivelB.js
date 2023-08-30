@@ -78,8 +78,31 @@ export default function NivelB() {
     const abrirMedidas = () => {
         var swal_html = `
         <div style = "width: 100%; align-text: center" align = "center">
-        <!-- Tabla de medidas -->
-        </div>`;
+        <table id="table" class = "table table-striped table-bordered" border=1 bordered style = "width: 97.5%">
+        <thead>
+            <tr>
+                <th align = "right">Talla</th>
+                <th align = "center">Ancho</th>
+                <th align = "center">Largo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align = "center">M</td>
+                <td align = "center">75</td>
+                <td align = "center">125</td>
+            </tr>
+            <tr>
+                <td align = "center">L</td>
+                <td align = "center">77</td>
+                <td align = "center">127</td>
+            </tr>
+            <td align = "center">M</td>
+                <td align = "center">75</td>
+                <td align = "center">125</td>
+            </tbody>
+            </table>
+            </div>`;
         Swal.fire({ title: "Guía de las tallas", html: swal_html, confirmButtonColor: 'red', confirmButtonText: 'Listo' });
     }
 
@@ -135,7 +158,7 @@ export default function NivelB() {
         setSelectedCardIndex(index);
     };
 
-    
+
 
 
 
@@ -215,6 +238,9 @@ export default function NivelB() {
                                                 <Col lg="6" s="12" style={{ textAlign: 'right' }}>
                                                     <Skeleton height={475} style={{ width: '100%', marginRight: '74.5px' }} />
                                                 </Col>
+                                                <Col lg="6" s="12" style={{ textAlign: 'right' }}>
+                                                    <Skeleton height={475} style={{ width: '100%', marginRight: '74.5px' }} />
+                                                </Col>
                                             </Row>
                                         </div>
                                     </Row>
@@ -239,7 +265,7 @@ export default function NivelB() {
                                         <Row>
                                             {colorSeleccionado && (
                                                 <div>
-                                                    <p style={{ marginTop: '24.5px' }}>Seleccione la talla</p>
+                                                    <p style={{ marginTop: '24.5px' }}>Seleccione la talla grande</p>
                                                     <Row>
                                                         {tallasDisponibles.map((talla, index) => (
                                                             <Col lg="2" key={index}>
@@ -263,7 +289,7 @@ export default function NivelB() {
                     {dataListaB ? (
                         <div>
                             <Row>
-                                <p style={{ fontSize: '28.5px', fontWeight: 'bold', textAlign: 'center' }}>{nombreCamiseta}</p>
+                                <p style={{ fontSize: '25.5px', fontWeight: 'bold', textAlign: 'center' }}>{nombreCamiseta}</p>
                                 <Col lg="7">
                                     <Row style={{ textAlign: 'center', marginBottom: '24.5px' }}>
                                         <div align='center'>
@@ -286,10 +312,10 @@ export default function NivelB() {
                                                 slidesToShow={window.innerWidth <= windWith ? 1 : 3}
                                                 scrollOnDevice={false}
                                             >
-                                                <div style={{ width: '100%', textAlign: 'center' }}>
+                                                <div style={{ width: '97.5%', textAlign: 'center' }}>
                                                     <img id='domicilio' className='miniIconos' style={{ width: '245px', height: '342px' }} src={detalleA.ImagenFrontal} />
                                                 </div>
-                                                <div style={{ width: '100%', textAlign: 'center' }}>
+                                                <div style={{ width: '97.5%', textAlign: 'center' }}>
                                                     <img id='domicilio' className='miniIconos' style={{ width: '245px', height: '342px' }} src={detalleA.ImagenPosterior} />
                                                 </div>
                                             </InfiniteCarousel>
@@ -297,18 +323,16 @@ export default function NivelB() {
                                     </Row>
                                 </Col>
                                 <Col lg="5">
+
+                                    <p className='seleccioneColorPeuqe' style = {{ textAlign: 'center' }}>${dataNivelA.Precio}</p>
                                     <p className='seleccioneColorPeque'>Seleccione el color de la camiseta</p>
                                     <Col>
-                                        <Row>
                                             {nivelB.length > 0 ? (
                                                 <div>
                                                     {nivelB.map((data, index) => (
-                                                        <Col lg='4' md='3' key={index} style={{ marginBottom: '24.5px' }}>
-                                                            <Card onClick={() => { botonColor(data); }} style={{ width: '67.5%', marginLeft: 'auto', marginRight: 'auto', height: '274.5px', borderRadius: '7.5px' }}>
-                                                                <Card.Img className='imagenA' variant='top' src={data.Imagen} />
-                                                                <Card.Body style={{}}>
-                                                                    <p style={{ textAlign: 'left', fontWeight: 'bold' }}>{data.Color}</p>
-                                                                </Card.Body>
+                                                        <Col lg='4' md='6' xs = "12" key={index} style={{ marginBottom: '19.5px' }}>
+                                                            <Card onClick={() => { botonColor(data); }} style={{ width: '85.5%', marginLeft: 'auto', marginRight: 'auto', height: '253.5px', borderRadius: '7.5px' }}>
+                                                                <Card.Img style = {{ height: '97.5%', width: '100%' }} variant='top' src={data.Imagen} />
                                                             </Card>
                                                         </Col>
                                                     ))}
@@ -316,15 +340,14 @@ export default function NivelB() {
                                             ) : (
                                                 <div>No hay</div>
                                             )}
-                                        </Row>
                                         <Row>
                                             {colorSeleccionado && (
                                                 <div>
-                                                    <p style={{ marginTop: '24.5px' }}>Seleccione la talla</p>
+                                                    <p style={{ marginTop: '24.5px' }}>Seleccione la talla aqui</p>
                                                     <Row>
                                                         {tallasDisponibles.map((talla) => (
-                                                            <Col lg="2" key={talla}>
-                                                                <div style={{ backgroundColor: 'transparent', height: '34.5px', borderColor: 'black', border: 'solid 0.5px', borderRadius: '7.5px' }}>
+                                                            <Col lg="2" xs = "3" key={talla}>
+                                                                <div onClick={() => { showOptions(talla) }} style={{ backgroundColor: 'transparent', height: '34.5px', borderColor: 'black', border: 'solid 0.5px', borderRadius: '7.5px' }}>
                                                                     <p style={{ borderColor: 'black', color: 'black', textAlign: 'center', marginTop: 'auto' }}>{talla}</p>
                                                                 </div>
                                                             </Col>
@@ -391,5 +414,5 @@ export default function NivelB() {
             )}
         </div>
     );
-    
+
 }

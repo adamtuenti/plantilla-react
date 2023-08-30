@@ -1,35 +1,16 @@
-import logo from './logo.svg';
-import RouterPage from './router'
+import React from 'react';
+import RouterPage from './router';
 import Header from './share/header/header';
-
-import { CartProvider } from "./hooks/useContext"
-
+import { CartProvider } from "./hooks/useContext";
 
 function App() {
-
-
-
-
   return (
-    <>
     <div className="main-container">
-
-
-
       <CartProvider>
-
-
-
-      <Header/>
-
-      <RouterPage/>
-
+        <Header />
+        <RouterPage />
       </CartProvider>
-
-  
-
-  </div>
-    </>
+    </div>
   );
 }
 
