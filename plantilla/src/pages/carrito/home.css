@@ -1,11 +1,11 @@
-#titulo{
+#titulo {
     font-weight: bold;
     font-size: 45.5px;
     text-align: center;
     margin-bottom: 35px;
 }
 
-.bottonA{
+.bottonA {
     width: 350px;
     height: 225px;
     background-color: transparent !important;
@@ -14,14 +14,14 @@
     margin-right: 35.5px !important;
 }
 
-.imagenA{
+.imagenA {
     width: 225px;
     height: 172px;
 }
 
 
 
-.bottonB{
+.bottonB {
     width: 350px;
     height: 225px;
     background-color: transparent !important;
@@ -30,7 +30,7 @@
     margin-right: 35.5px !important;
 }
 
-.imagenB{
+.imagenB {
     width: 225px;
     height: 172px;
 }
@@ -39,14 +39,14 @@
 
 
 
-.loading{
+.loading {
     font-size: 24.5px;
     text-align: center;
 }
 
 
 
-.loadingImage{
+.loadingImage {
     width: 275px;
     text-align: center;
     margin-left: auto;
@@ -54,13 +54,66 @@
 
 
 
-.seleccione{
+.seleccione {
     font-size: 24px;
     text-align: center;
 }
 
 
 
-.colSkeletonCarousel{
+.colSkeletonCarousel {
     text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+thead th {
+    background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+
+    th,
+    td {
+        display: block;
+        width: 100%;
+    }
+
+    th {
+        text-align: right;
+    }
+
+    tbody tr {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 }

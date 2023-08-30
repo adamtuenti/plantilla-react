@@ -14,6 +14,16 @@ export function CartProvider({ children }) {
   };
 
 
+  const removeFromCart = () => {
+    console.log(cartItems)
+    console.log('aca')
+    const storedCartItems = JSON.parse(localStorage.getItem('productos')) || [];
+    console.log(storedCartItems, storedCartItems.length)
+    //const updatedCartItems = cartItems.slice(0, -1);
+    setCartItems([...storedCartItems]);
+  }
+
+
 
   useEffect(() => {
     // Recuperar elementos del carrito almacenados en localStorage
@@ -24,7 +34,7 @@ export function CartProvider({ children }) {
   const cartItemCount = cartItems.length;
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, cartItemCount }}>
+    <CartContext.Provider value={{ cartItems, addToCart, cartItemCount, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

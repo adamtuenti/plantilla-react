@@ -4,6 +4,8 @@ import { getNivelB, getDetalleFotoA } from '../../../api/api';
 import { Button, Col, Row, Card } from 'react-bootstrap';
 import "./hombres.css"
 
+import { useCart } from '../../../hooks/useContext';
+
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -22,6 +24,10 @@ export default function NivelB() {
 
     const location = useLocation()
     const history = useNavigate()
+
+
+
+    const { addToCart } = useCart()
 
     const [index, setIndex] = useState(1)
 
@@ -140,8 +146,8 @@ export default function NivelB() {
 
     const showOptions = (talla) => {
         Swal.fire({
-            title: 'Desea agregar al carrito?',
-            text: `Nombre: ` + nombreCamiseta + '<br/>' + 'Precio: $15',
+            title: '¿Desea agregar al carrito?',
+            text: nombreCamiseta,
             showDenyButton: true,
             //showCancelButton: true,
             confirmButtonText: 'Si',
@@ -149,19 +155,18 @@ export default function NivelB() {
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                Swal.fire('Saved!', '', 'success')
+                Swal.fire('Agregado!', '', 'success')
                 agregarAlCarrito(talla)
-            } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
+                addToCart()
             }
         })
     }
 
 
 
-    
 
-    
+
+
 
 
 
@@ -205,6 +210,38 @@ export default function NivelB() {
     }
 
 
+
+    const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+
+    const handleCardClick = (data, index) => {
+        botonColor(data)
+        setSelectedCardIndex(index);
+    };
+
+
+
+
+
+    const CardA = ({ data, onClick, isSelected }) => {
+        const cardStyles = {
+            border: isSelected ? '2px solid blue' : '1px solid #ccc',
+            boxShadow: isSelected ? '0px 0px 8px rgba(0, 0, 255, 0.5)' : 'none',
+            cursor: 'pointer',
+            width: '95%', height: '174.5px', borderRadius: '7.5px',
+            textAlign: 'center'
+        };
+
+        return (
+            <div style={cardStyles} onClick = {onClick}>
+                <img style={{ height: '100%', borderRadius: '7.5px', width: '92.5%' }} src={data.Imagen} />
+            </div>
+        );
+    };
+
+
+
+
+
     return (
         <div style={{ padding: "28.5px" }}>
 
@@ -245,7 +282,7 @@ export default function NivelB() {
                                     <p style={{ fontSize: '28.5px', fontWeight: 'bold' }}>{nombreCamiseta}</p>
                                     <p>$ {dataNivelA.Precio}</p>
 
-                                    <p className='seleccione'>Seleccione el color de la camiseta</p>
+                                    <p style={{ fontSize: '19.5px', fontWeight: 'bold', fontStyle: 'italic' }}>Seleccione el color de la camiseta</p>
 
                                     <a onClick={() => { abrirMedidas() }} style={{ fontStyle: 'italic', textDecoration: 'underline' }}>Guía de las medidas</a>
 
@@ -257,18 +294,27 @@ export default function NivelB() {
 
                                                 <Row>
                                                     {
-                                                        nivelB.map((data) => (
+                                                        nivelB.map((data, index) => (
 
-                                                            <Col lg='4' md='3' style={{ marginTop: '19.5px' }}>
+                                                            <Col lg='3' md='3' style={{ marginTop: '19.5px' }}>
 
-                                                                <Card onClick={() => { botonColor(data) }} style={{ width: '95%', marginLeft: 'auto', marginRight: 'auto', height: '254.5px', borderRadius: '7.5px' }}>
-                                                                    <Card.Img className='imagenA' variant='top' src={data.Imagen} />
 
-                                                                    <Card.Body style={{}}>
-                                                                        <p style={{ textAlign: 'left', fontWeight: 'bold' }}>{data.Color}</p>
 
-                                                                    </Card.Body>
+
+                                                                <CardA
+                                                                    key={index}
+                                                                    data={data}
+                                                                    isSelected={index === selectedCardIndex}
+                                                                    onClick={() => handleCardClick(data, index)}
+                                                                />
+
+
+                                                                {/*      <CardA isSelected={index === selectedCardIndex} onClick={() => { botonColor(data) }} style={{ width: '95%', marginLeft: 'auto', marginRight: 'auto', height: '174.5px', borderRadius: '7.5px' }}>
+                                                                    <Card.Img style = {{ height: '100%' }} className='' variant='top' src={data.Imagen} />
+
                                                                 </Card>
+
+                                                        */}
 
 
                                                             </Col>
@@ -283,7 +329,7 @@ export default function NivelB() {
 
                                                 <div>
 
-                                                    No hay
+                                                    No hay diseños disponibles
 
                                                 </div>
 
@@ -304,7 +350,7 @@ export default function NivelB() {
 
 
 
-                                                    <p style={{ marginTop: '24.5px' }}>Seleccione la talla</p>
+                                                    <p style={{ fontSize: '19.5px', fontWeight: 'bold', fontStyle: 'italic', marginTop: '14.5px' }}>Seleccione la talla</p>
 
 
 
@@ -315,13 +361,13 @@ export default function NivelB() {
                                                         {tallasDisponibles.map((talla) => (
 
 
-                                                            <Col lg="2">
+                                                            <Col lg="1" className='mx-0 px-0' style={{ backgroundColor: 'blue', marginRight: '2.5px' }}>
 
 
-                                                                <Button onClick={() => { showOptions(talla) }} style={{ backgroundColor: 'green', height: '34.5px', borderColor: 'black', border: 'solid 0.5px', display: 'flex', verticalAlign: 'center', textAlign: 'center' }}>
+                                                                <div onClick={() => { showOptions(talla) }} style={{ backgroundColor: 'green', height: '34.5px', borderColor: 'black', border: 'solid 0.5px', display: 'flex', verticalAlign: 'center', textAlign: 'center' }}>
                                                                     <p style={{ borderColor: 'black', color: 'black', textAlign: 'center', marginTop: 'auto', marginLeft: 'auto', marginRight: 'auto' }}>{talla}</p>
 
-                                                                </Button>
+                                                                </div>
 
 
                                                             </Col>
@@ -418,7 +464,7 @@ export default function NivelB() {
 
                                     <p style={{ fontSize: '28.5px', fontWeight: 'bold' }}>{nombreCamiseta}</p>
 
-                                    <Skeleton height={18.75} width = {75.5} variant='top'/>
+                                    <Skeleton height={18.75} width={75.5} variant='top' />
 
 
 
@@ -431,7 +477,7 @@ export default function NivelB() {
                                                 [{}, {}].map((data) => (
 
                                                     <Col lg='4' md='3' style={{ marginTop: '24.5px' }}>
-                                                        
+
 
                                                         <Card style={{ width: '95%', marginLeft: 'auto', marginRight: 'auto', height: '254.5px', borderRadius: '7.5px' }}>
 

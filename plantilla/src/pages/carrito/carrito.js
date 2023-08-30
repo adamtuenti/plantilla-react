@@ -6,8 +6,6 @@ import Portada from "../../share/images/portada.png"
 import PortadaPequena from "../../share/images/eren.png"
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-import portada from "../../share/images/portada.png"
 
 import InfiniteCarousel from 'react-leaf-carousel';
 
@@ -15,6 +13,8 @@ import InfiniteCarousel from 'react-leaf-carousel';
 
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+
+import { useCart } from '../../hooks/useContext';
 
 
 
@@ -28,7 +28,9 @@ export default function Carrito() {
 
     const history = useNavigate();
 
-    let carrito = JSON.parse(localStorage.getItem("productos"))
+    const { removeFromCart } = useCart()
+
+    //let carrito = JSON.parse(localStorage.getItem("productos"))
 
     const [datosCarrito, setDatosCarrito] = useState([])
     //let totalSinEnvio = 0
@@ -41,9 +43,7 @@ export default function Carrito() {
 
 
 
-    const [nivel, setNivel] = useState('A')
-
-    const [datosCarousel, setDatosCarousel] = useState([])
+    const carrito = JSON.parse(localStorage.getItem("productos"))
 
 
 
@@ -51,7 +51,7 @@ export default function Carrito() {
 
 
 
-        let carrito = JSON.parse(localStorage.getItem("productos"))
+        
 
         if (carrito != null) {
 
@@ -119,60 +119,79 @@ export default function Carrito() {
 
 
 
+    function procesarArreglo(arr) {
+        const uniqueObjects = {}; // Objeto para almacenar objetos únicos y sus cantidades
 
+        // Iterar sobre el arreglo de objetos
+        arr.forEach(obj => {
+            // Convertir el objeto en una cadena para usarla como clave
+            const objKey = JSON.stringify(obj);
 
-
-
-    const getCountProducts = async (carrito) => {
-
-        return (obtenerObjetosUnicosConCantidad(carrito))
-
-        let uniqueObjArray = [...new Map(carrito.map((item) => [item["id"], item])).values()];
-        console.log('ojala: ', uniqueObjArray)
-
-
-
-
-        var arr = carrito.filter(onlyUnique)
-        let nuevo = {}
-
-        console.log('carrito: ', carrito)
-
-        let ind = 0
-
-        carrito.forEach(prod => {
-            console.log('leer: ', prod)
-            //prod = JSON.stringify(prod)
-            nuevo[prod] = (nuevo[prod] || 0) + 1
-
-            //ind  = ind + 1
+            // Si ya existe en el objeto uniqueObjects, incrementar la cantidad
+            if (uniqueObjects[objKey]) {
+                uniqueObjects[objKey].cantidad++;
+            } else {
+                // Si no existe, agregarlo al objeto con una cantidad de 1
+                uniqueObjects[objKey] = { ...obj, cantidad: 1 };
+            }
         });
 
-        console.log('Nuevito: ', nuevo)
+        // Convertir el objeto de objetos únicos nuevamente a un arreglo
+        const resultArray = Object.values(uniqueObjects);
 
-        console.log('arr: ', arr)
-
-        let final = []
-
-        arr.map((dato) => (
-
-            console.log('indices: ', getAllIndexes(carrito, dato)),
-
-            final.push(dato)
-        ))
-
-        let indices = []
-
-
-
-
-        console.log('aqui nuevo: ', nuevo)
-
-        return nuevo
-
-
-
+        return resultArray;
     }
+
+
+
+
+    const [data, setData] = useState(getDataFromLocalStorage());
+
+    // Función para eliminar objetos específicos del arreglo
+    const removeObject = (objectToDelete) => {
+        delete objectToDelete.cantidad
+        console.log('ejecuto: ', objectToDelete)
+        
+        const updatedData = data.filter(item => !isObjectEqual(item, objectToDelete));
+        setData(updatedData);
+
+
+
+        
+
+
+
+
+        updateLocalStorage(updatedData);
+    };
+
+    // Función para comparar si dos objetos son iguales independientemente del orden de sus atributos
+    const isObjectEqual = (obj1, obj2) => {
+        return JSON.stringify(obj1) === JSON.stringify(obj2);
+    };
+
+    // Función para actualizar el localStorage
+    const updateLocalStorage = (updatedData) => {
+        localStorage.setItem('productos', JSON.stringify(updatedData));
+        getAllProducts(updatedData)
+
+        removeFromCart()
+
+        
+    };
+
+    // Función para obtener datos del localStorage
+    function getDataFromLocalStorage() {
+        const storedData = localStorage.getItem('productos');
+        return storedData ? JSON.parse(storedData) : [];
+    }
+
+    // Cargar la pantalla nuevamente después de actualizar los datos
+    const reloadPage = () => {
+        window.location.reload();
+    };
+
+
 
 
 
@@ -183,19 +202,10 @@ export default function Carrito() {
         let cantidadProductos = 0
 
 
-
-
-
-
-
-
-        let nuevoArray = await obtenerObjetosUnicosConCantidad(carrito)
-
+        let nuevoArray = await procesarArreglo(carrito)
         setDatosCarrito(nuevoArray)
 
         console.log('salida: ', nuevoArray)
-
-
 
         nuevoArray.map((dato) => {
             total = total + dato.Precio * dato.cantidad
@@ -204,12 +214,6 @@ export default function Carrito() {
 
         setTotalSinEnvio(total)
         setCantidad(cantidadProductos)
-
-
-
-
-
-
 
 
 
@@ -237,7 +241,7 @@ export default function Carrito() {
 
 
                 <Row>
-                    <Col lg="2">
+                    <Col lg="1">
 
                     </Col>
                     <Col lg="5">
@@ -258,6 +262,8 @@ export default function Carrito() {
                                     <p>Color: {producto.Color}</p>
                                     <p>Cantidad: {producto.cantidad}</p>
 
+                                    <p onClick={() => { removeObject(producto) }}>Borrar</p>
+
                                 </Col>
 
                             </Row>
@@ -266,19 +272,41 @@ export default function Carrito() {
 
                     </Col>
 
-                    <Col lg="3" style={{ backgroundColor: '#DCD4D4', borderRadius: '12.5px', height: '325px' }}>
+                    <Col lg="5" style={{ backgroundColor: '', borderRadius: '12.5px' }}>
+
+
 
                         <p style={{ textAlign: 'center', fontWeight: 'bold' }}>Resumen de la compra</p>
 
 
-                        <p>Cantidad de productos: {cantidad}</p>
 
-                        {datosCarrito.map((dato) => (
-                            <div>
+                        <div className="table-responsive table-bordered table-striped">
+                            <table className="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Cantidad</th>
+                                        <th>Nombre</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {datosCarrito.map(item => (
+                                        <tr key={item.Id}>
+                                            <td>{item.cantidad}</td>
+                                            <td>{item.Titulo}</td>
+                                            <td>${item.Precio * item.cantidad}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
 
-                                <p>{"(" + dato.cantidad + ")"} {dato.Titulo} - {dato.Talla} ${dato.Precio* dato.cantidad}</p>
-                            </div>
-                        ))}
+
+
+
+
+                        <p>Total de productos: {cantidad}</p>
+
 
                         <p>Total sin envío: ${totalSinEnvio}</p>
 
