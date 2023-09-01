@@ -1,0 +1,129 @@
+/* Estilos generales de la aplicación */
+.App {
+    text-align: center;
+  }
+  
+  /* Estilos del ícono de WhatsApp */
+  .whatsapp-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .whatsapp-icon:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
+  }
+  
+  /* Estilos para el contenedor del chatbot */
+  .chatbot-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px 0 0 0;
+    overflow: hidden;
+    z-index: 999;
+    width: 300px;
+    height: 400px;
+    transition: transform 0.3s;
+  }
+  
+  /* Estilos para mostrar el chatbot cuando está abierto */
+  .chatbot-open {
+    transform: translateX(0);
+  }
+  
+  /* Estilos para ocultar el chatbot cuando está cerrado */
+  .chatbot-closed {
+    transform: translateX(100%);
+  }
+  
+  /* Estilos para el contenedor del chat */
+  .chat-window {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px 0 0 0;
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  /* Estilos para el contenedor de preguntas */
+  .preguntas-container {
+    padding: 20px;
+  }
+  
+  /* Estilos para los botones de pregunta */
+  .pregunta-button {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .pregunta-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para el widget de chat */
+  .rcw-widget-container {
+    display: none; /* Esto oculta el widget de chat por defecto */
+  }
+  
+  .rcw-conversation-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .rcw-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .rcw-message-container {
+    /* ... (estilos del contenedor de mensajes) */
+  }
+  
+  .rcw-message {
+    /* ... (estilos de los mensajes) */
+  }
+  
+  .rcw-response {
+    /* ... (estilos de la respuesta del chatbot) */
+  }
+  
+  .rcw-new-message {
+    /* ... (estilos de la caja de nuevo mensaje) */
+  }
+  
+  .rcw-send {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .rcw-send:hover {
+    background-color: #0056b3;
+  }
+  

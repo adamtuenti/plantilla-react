@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './header.css'
-import logo from '../images/logo.png'
+import logo from '../images/logoZeus.png'
 import { NavLink } from 'react-router-dom';
 import { HiMenu, HiShoppingCart } from "react-icons/hi";
 import { useCart } from "../../hooks/useContext";
@@ -33,9 +33,13 @@ export default function Header() {
                     <li>
                         <NavLink exact activeClassName="active" to="/mujeres/paso1" onClick={closeMenu}>Mujeres</NavLink>
                     </li>
+                    <li>
+                        <NavLink exact activeClassName="active" to="/contacto" onClick={closeMenu}>Contáctanos</NavLink>
+                    </li>
                     <li className="carrito-text">
                         <NavLink exact className="carrito-text" activeClassName="active" to="/carrito" onClick={closeMenu}>{"(" + cartItemCount + ")"} Carrito</NavLink>
                     </li>
+                    
                 </ul>
             </nav>
             <div className="cart-icon">

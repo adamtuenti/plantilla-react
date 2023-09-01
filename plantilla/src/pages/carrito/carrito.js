@@ -8,6 +8,10 @@ import { BsFillArchiveFill } from "react-icons/bs";
 import 'jspdf-autotable';
 import html2pdf from 'html2pdf.js';
 
+
+
+import carritoVacio from "../../share/images/carritoComprasVacio.png"
+
 export default function Carrito() {
     const history = useNavigate();
     const { removeFromCart } = useCart();
@@ -209,26 +213,27 @@ export default function Carrito() {
 
     return (
         <div style={{ padding: "45px" }}>
-            {carrito === null ?
-                <div>
-                    vacio
+            {(carrito === null || datosCarrito.length == 0) ?
+                <div style = {{ padding: '25px', textAlign: 'center' }}>
+                    <p style = {{ fontSize: '24.5px' }}>Aún no hay productos en tu carrito</p>
+                    <img src = {carritoVacio}  style = {{ width: '157.5px', marginTop: '24.5px' }} className = 'img-fluid'/>
                 </div>
                 :
                 <Row>
                     <Col lg='1'></Col>
-                    <Col lg="5">
+                    <Col lg="5" xs = "12">
                         <Row>
                             {datosCarrito.map((producto) => (
-                                <Col lg='6' style={{ marginBottom: '32.5px' }}>
+                                <Col lg='6'  xs = "12" style={{ marginBottom: '32.5px' }}>
                                     <Card style={{ width: '250px', padding: '0px', height: '325px' }}>
                                         <Card.Img onClick={() => navegarProducto(producto)} src={producto.Imagen} style={{ width: '100%', height: '78.5%' }} />
                                         <Card.Body className='mx-0 px-0' style={{ textAlign: 'left', padding: 'none', height: '14.75%' }}>
                                             <Row>
                                                 <p style={{ fontWeight: 'bold', fontSize: '14.5px', lineHeight: '5px', marginLeft: '7.5px' }}>{producto.Titulo}</p>
-                                                <Col lg='10'>
+                                                <Col lg='10' xs = "10">
                                                     <p style={{ fontStyle: 'italic', marginLeft: '7.5px' }}>C. {producto.cantidad} {' '} <b> | </b> {' '} {producto.Talla} <b> | </b> {producto.Color}</p>
                                                 </Col>
-                                                <Col lg='2'>
+                                                <Col lg='2' xs = "2">
                                                     <BsFillArchiveFill onClick={() => { removeObject(producto) }} color="red" />
                                                 </Col>
                                             </Row>
@@ -238,10 +243,10 @@ export default function Carrito() {
                             ))}
                         </Row>
                     </Col>
-                    <Col lg="5" style={{ backgroundColor: '', borderRadius: '12.5px' }}>
+                    <Col lg="5" xs = "12" style={{ backgroundColor: '', borderRadius: '12.5px' }}>
                         <p style={{ textAlign: 'center', fontWeight: 'bold' }}>Resumen de la compra</p>
                         <div className="table-responsive table-bordered table-striped">
-                            <table className="table table-striped">
+                            <table className="table table-striped table-responsive">
                                 <thead>
                                     <tr>
                                         <th>Cant.</th>
@@ -262,7 +267,7 @@ export default function Carrito() {
                                 </tbody>
                             </table>
                         </div>
-                        <p>Total de productos: {cantidad}</p>
+                        <p>Cantidad de productos: {cantidad}</p>
                         <p>Total sin envío: ${totalSinEnvio}</p>
                         <Button onClick={() => generateAndDownloadPDF(carrito)}>Descargar PDF</Button>
                     </Col>

@@ -1,0 +1,119 @@
+/* Estilos generales de la página */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  /* Estilos para el título */
+  .contact-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el texto que se escribe letra por letra */
+  .contact-container p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  /* Estilos para los iconos de contacto y sus enlaces */
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .contact-icon {
+    font-size: 36px;
+    margin-right: 14.5px;
+  }
+  
+  .contact-methods a {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .contact-methods a:hover {
+    color: #007bff;
+  }
+  
+  /* Estilos para la sección de entrega */
+  .delivery-section {
+    margin-top: 75px;
+    border-radius: 12.5px;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 75%;
+  }
+  
+  @media (max-width: 750px) {
+
+
+
+    .contact-container {
+    
+        padding: 12.5px;
+        
+      }
+
+
+
+      
+    .delivery-section {
+      width: 97.5%; /* Ancho para dispositivos menores a 750px */
+      padding: 0px;
+    }
+  }
+  
+  .delivery-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .delivery-section p {
+    font-size: 17.75px;
+    line-height: 1.5;
+  }
+  
+  /* Estilos del ícono de WhatsApp */
+  .whatsapp-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .whatsapp-icon:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
+  }
+  
+  /* Colores personalizados para íconos */
+  .contact-icon.whatsapp {
+    color: #25d366; /* Color de WhatsApp */
+  }
+  
+  .contact-icon.instagram {
+    color: #bc2a8d; /* Color de Instagram */
+  }
+  

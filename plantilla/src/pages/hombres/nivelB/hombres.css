@@ -1,6 +1,6 @@
 .seleccioneColorPeque {
     text-align: center;
-    font-size: 19.5px;
+    font-size: 19.5px !important;
     font-style: italic
 }
 

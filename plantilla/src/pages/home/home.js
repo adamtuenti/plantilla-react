@@ -14,8 +14,44 @@ export default function Home() {
     const [datosCarousel, setDatosCarousel] = useState([]);
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
+
+
+    const [typedText, setTypedText] = useState('');
+    const text = "Hay un modelo para todos\nTe animas a buscar el tuyo?";
+    let index = 0;
+
     let tamanoMaximo = 750;
     let tamanoPantalla = window.innerWidth;
+
+
+
+    const lines = typedText.split('\n').map((line, index) => (
+        <React.Fragment key={index}>
+          {line}
+          <br />
+        </React.Fragment>
+      ));
+
+
+
+    useEffect(() => {
+        const typingInterval = setInterval(() => {
+            setTypedText(text.slice(0, index));
+            index++;
+
+            if (index > text.length) {
+                clearInterval(typingInterval);
+            }
+        }, 14.5); // Cambia la velocidad aquí
+
+        return () => {
+            clearInterval(typingInterval);
+        };
+    }, []);
+
+
+
+
 
     useEffect(() => {
         const funcionInicial = async () => {
@@ -33,7 +69,9 @@ export default function Home() {
                         backgroundImage: `url(${Portada})`, backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover', width: '100%', height: '515px', display: 'flex', alignItems: 'center', paddingLeft: '24.5px'
                     }}>
-                        <p style={{ fontWeight: 'none', fontSize: '34.5px', marginLeft: '42.5px', verticalAlign: 'middle', textAlign: 'left', color: 'black' }}>Hay un modelo para todos<br />Te animas a buscar el tuyo?</p>
+                        <p style={{ fontWeight: 'none', fontSize: '34.5px', marginLeft: '42.5px', verticalAlign: 'middle', textAlign: 'left', color: 'black' }}>
+                            {lines}
+                        </p>
                     </div>
                     <div></div>
                     {datosCarousel.length > 0 ?
@@ -110,7 +148,7 @@ export default function Home() {
                         backgroundImage: `url(${PortadaPequena})`, position: 'relative',
                         backgroundSize: '100%', width: '100%', height: '484.5px', backgroundRepeat: 'no-repeat', display: 'flex', alignItems: 'start', paddingLeft: '24.5px'
                     }}>
-                        <p style={{ fontWeight: 'bold', fontSize: '34.5px', textAlign: 'center', color: 'white' }}>Selecciona el modelo que más te guste</p>
+                        <p style={{ fontWeight: 'bold', fontSize: '29.5px', textAlign: 'center', color: 'white' }}>Selecciona el modelo que más te guste</p>
                     </div>
                     {datosCarousel.length > 0 ?
                         <div style={{ marginTop: '12.5px', marginBottom: '59.7px' }} id='divCarrousel'>
@@ -150,19 +188,21 @@ export default function Home() {
                                             id='domicilio'
                                             className='miniIconos'
                                             style={{
-                                                width: '245px',
+                                                width: '249px',
                                                 height: '342px',
                                                 maxWidth: '100%'
                                             }}
                                             src={dato.Imagen}
-                                            alt={dato.Titulo}
+                                        //alt={dato.Titulo}
                                         />
                                     </div>
                                 ))}
                             </InfiniteCarousel>
                         </div>
                         :
-                        <div>cargando {datosCarousel.length}</div>
+                        <div align='center'>
+                            <Skeleton height={342} style={{ width: '75.5%' }} />
+                        </div>
                     }
                 </div>
             }

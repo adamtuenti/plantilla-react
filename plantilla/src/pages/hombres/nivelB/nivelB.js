@@ -13,15 +13,15 @@ import 'sweetalert2/src/sweetalert2.scss';
 
 const CardA = ({ data, onClick, isSelected }) => {
     const cardStyles = {
-        border: isSelected ? '2px solid blue' : '1px solid #ccc',
+        border: isSelected ? '2px solid red' : '1px solid #ccc',
         boxShadow: isSelected ? '0px 0px 8px rgba(0, 0, 255, 0.5)' : 'none',
         cursor: 'pointer',
-        width: '95%', height: '174.5px', borderRadius: '7.5px',
+        width: '95.5%', height: '174.5px', borderRadius: '7.5px',
         textAlign: 'center'
     };
     return (
         <div style={cardStyles} onClick={onClick}>
-            <img style={{ height: '100%', borderRadius: '7.5px', width: '92.5%' }} src={data.Imagen} />
+            <img style={{ height: '100%', borderRadius: '7.5px', width: '97.5%' }} src={data.Imagen} />
         </div>
     );
 };
@@ -85,25 +85,29 @@ export default function NivelB() {
                 <th align = "center">Ancho</th>
                 <th align = "center">Largo</th>
             </tr>
-        </thead>
-        <tbody>
+        
+            <tbody>
+                <td align = "center">S</td>
+                <td align = "center">${dataNivelA.TallaS.Ancho}</td>
+                <td align = "center">${dataNivelA.TallaS.Largo}</td>
+            
             <tr>
                 <td align = "center">M</td>
-                <td align = "center">75</td>
-                <td align = "center">125</td>
+                <td align = "center">${dataNivelA.TallaM.Ancho}</td>
+                <td align = "center">${dataNivelA.TallaM.Largo}</td>
             </tr>
             <tr>
                 <td align = "center">L</td>
-                <td align = "center">77</td>
-                <td align = "center">127</td>
+                <td align = "center">${dataNivelA.TallaL.Ancho}</td>
+                <td align = "center">${dataNivelA.TallaL.Largo}</td>
             </tr>
-            <td align = "center">M</td>
-                <td align = "center">75</td>
-                <td align = "center">125</td>
             </tbody>
+
+            </thead>
+           
             </table>
             </div>`;
-        Swal.fire({ title: "Guía de las tallas", html: swal_html, confirmButtonColor: 'red', confirmButtonText: 'Listo' });
+        Swal.fire({ title: "Guía de las tallas (en cm)", text: 'Unidades en cm', html: swal_html, confirmButtonColor: 'red', confirmButtonText: 'Listo' });
     }
 
     const showOptions = (talla) => {
@@ -324,29 +328,34 @@ export default function NivelB() {
                                 </Col>
                                 <Col lg="5">
 
-                                    <p className='seleccioneColorPeuqe' style = {{ textAlign: 'center' }}>${dataNivelA.Precio}</p>
+                                    <p className='seleccioneColorPeuqe' style={{ textAlign: 'center' }}>${dataNivelA.Precio}</p>
                                     <p className='seleccioneColorPeque'>Seleccione el color de la camiseta</p>
                                     <Col>
-                                            {nivelB.length > 0 ? (
-                                                <div>
+                                        {nivelB.length > 0 ? (
+                                            <div>
+                                                <Row>
                                                     {nivelB.map((data, index) => (
-                                                        <Col lg='4' md='6' xs = "12" key={index} style={{ marginBottom: '19.5px' }}>
-                                                            <Card onClick={() => { botonColor(data); }} style={{ width: '85.5%', marginLeft: 'auto', marginRight: 'auto', height: '253.5px', borderRadius: '7.5px' }}>
-                                                                <Card.Img style = {{ height: '97.5%', width: '100%' }} variant='top' src={data.Imagen} />
+                                                        <Col lg='4' md='6' xs="6" key={index} style={{ marginBottom: '19.5px' }}>
+                                                            <Card onClick={() => { botonColor(data); }} style={{ width: '98.5%', marginLeft: 'auto', marginRight: 'auto', height: '175.5px', borderRadius: '7.5px' }}>
+                                                                <Card.Img style={{ height: '97.5%', width: '100%' }} variant='top' src={data.Imagen} />
                                                             </Card>
                                                         </Col>
                                                     ))}
-                                                </div>
-                                            ) : (
-                                                <div>No hay</div>
-                                            )}
+
+
+
+                                                </Row>
+                                            </div>
+                                        ) : (
+                                            <div>No hay</div>
+                                        )}
                                         <Row>
                                             {colorSeleccionado && (
                                                 <div>
-                                                    <p style={{ marginTop: '24.5px' }}>Seleccione la talla aqui</p>
+                                                    <p style={{ marginTop: '18.5px' }} className='seleccioneColorPeque'>Seleccione la talla</p>
                                                     <Row>
                                                         {tallasDisponibles.map((talla) => (
-                                                            <Col lg="2" xs = "3" key={talla}>
+                                                            <Col lg="2" xs="3" key={talla}>
                                                                 <div onClick={() => { showOptions(talla) }} style={{ backgroundColor: 'transparent', height: '34.5px', borderColor: 'black', border: 'solid 0.5px', borderRadius: '7.5px' }}>
                                                                     <p style={{ borderColor: 'black', color: 'black', textAlign: 'center', marginTop: 'auto' }}>{talla}</p>
                                                                 </div>

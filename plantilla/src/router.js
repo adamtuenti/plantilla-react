@@ -8,6 +8,7 @@ import NivelBF from "./pages/mujeres/nivelB/nivelB"
 import Mujeres from "./pages/mujeres/mujeres";
 import Carrito  from "./pages/carrito/carrito"
 import NotFound from "./pages/notFound/notFound";
+import ContactPage from "./pages/contacto/contacto";
 
 
 const RouterPage = () => {
@@ -23,6 +24,7 @@ const RouterPage = () => {
                 <Route exact path = '/mujeres/paso1' element = {<NivelAF/>} />
                 <Route exact path = '/mujeres/paso2' element = {<NivelBF/>} />
                 <Route exact path = '/carrito' element = {<Carrito/>} />
+                <Route exact path = '/contacto' element = {<ContactPage/>} />
                 <Route exact path = '*' element = {<NotFound/>} />
 
             </Routes>

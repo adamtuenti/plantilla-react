@@ -6,9 +6,14 @@
 }
 
 nav ul {
-  list-style: none;
   display: flex;
+  flex-direction: row; /* Disposición horizontal */
+  align-items: center; /* Centrado vertical */
+  justify-content: center; /* Centrado horizontal */
+  height: 100%; /* Ocupa el 100% de la altura del nav */
+  margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 nav li {
@@ -27,7 +32,7 @@ header {
   align-items: center;
   /* Centrar verticalmente */
   padding: 10px 20px;
-  background-color: #FD392C;
+  background-color: #1A1A1A;
   /* Color de fondo del encabezado */
 }
 
@@ -36,7 +41,7 @@ header img {
   /* Ajusta el ancho del logo según tu diseño */
   height: 65.75px;
   /* Ajusta la altura del logo según tu diseño */
-  margin-right: 12.5px;
+  margin-right: 29.5px;
 }
 
 .header-content {

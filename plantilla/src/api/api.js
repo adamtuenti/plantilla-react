@@ -30,6 +30,21 @@ const db = getFirestore(app);
 
 
 
+export const getPreguntasRespuestas = async () => {
+  const collection_ref = collection(db, 'Preguntas')
+  const query_ref = query(collection_ref, where("Disponible", '==', true))
+  let dataFinal = []
+  const datos = await getDocs(query_ref)
+
+  datos.forEach((doc) => {
+    dataFinal.push(doc.data())
+  })
+
+  console.log(dataFinal)
+
+  return dataFinal
+}
+
 export const funcionEjemplo = async () => {
   let data = { nombre: 'Adan', apellido: 'Navarrete' }
   let dataRef = await addDoc(collection(db, "Ejemplo"), data);
