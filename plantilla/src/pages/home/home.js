@@ -14,8 +14,6 @@ export default function Home() {
     const [datosCarousel, setDatosCarousel] = useState([]);
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
-
-
     const [typedText, setTypedText] = useState('');
     const text = "Hay un modelo para todos\nTe animas a buscar el tuyo?";
     let index = 0;
@@ -23,16 +21,12 @@ export default function Home() {
     let tamanoMaximo = 750;
     let tamanoPantalla = window.innerWidth;
 
-
-
     const lines = typedText.split('\n').map((line, index) => (
         <React.Fragment key={index}>
-          {line}
-          <br />
+            {line}
+            <br />
         </React.Fragment>
-      ));
-
-
+    ));
 
     useEffect(() => {
         const typingInterval = setInterval(() => {
@@ -42,16 +36,37 @@ export default function Home() {
             if (index > text.length) {
                 clearInterval(typingInterval);
             }
-        }, 14.5); // Cambia la velocidad aquí
+        }, 14.5);
 
         return () => {
             clearInterval(typingInterval);
         };
     }, []);
 
+    const [smallScreenTypedText, setSmallScreenTypedText] = useState('');
+    const smallScreenText = "Selecciona el modelo que más te guste";
+    let smallScreenIndex = 0;
+    const smallScreenLines = smallScreenTypedText.split('\n').map((line, index) => (
+        <React.Fragment key={index}>
+            {line}
+            <br />
+        </React.Fragment>
+    ));
 
+    useEffect(() => {
+        const smallScreenTypingInterval = setInterval(() => {
+            setSmallScreenTypedText(smallScreenText.slice(0, smallScreenIndex));
+            smallScreenIndex++;
 
+            if (smallScreenIndex > smallScreenText.length) {
+                clearInterval(smallScreenTypingInterval);
+            }
+        }, 45.5);
 
+        return () => {
+            clearInterval(smallScreenTypingInterval);
+        };
+    }, []);
 
     useEffect(() => {
         const funcionInicial = async () => {
@@ -148,7 +163,9 @@ export default function Home() {
                         backgroundImage: `url(${PortadaPequena})`, position: 'relative',
                         backgroundSize: '100%', width: '100%', height: '484.5px', backgroundRepeat: 'no-repeat', display: 'flex', alignItems: 'start', paddingLeft: '24.5px'
                     }}>
-                        <p style={{ fontWeight: 'bold', fontSize: '29.5px', textAlign: 'center', color: 'white' }}>Selecciona el modelo que más te guste</p>
+                        <p style={{ fontWeight: 'bold', fontSize: '27.5px', textAlign: 'center', color: 'white', marginTop: '12.5px', lineHeight: '27.5px' }}>
+                            {smallScreenLines}
+                        </p>
                     </div>
                     {datosCarousel.length > 0 ?
                         <div style={{ marginTop: '12.5px', marginBottom: '59.7px' }} id='divCarrousel'>
@@ -193,7 +210,6 @@ export default function Home() {
                                                 maxWidth: '100%'
                                             }}
                                             src={dato.Imagen}
-                                        //alt={dato.Titulo}
                                         />
                                     </div>
                                 ))}

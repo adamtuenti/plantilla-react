@@ -10,6 +10,9 @@ export default function Header() {
     const { cartItemCount } = useCart();
     const [menuOpen, setMenuOpen] = useState(false);
 
+    let tamanoMaximo = 750
+    let tamanoPantalla = window.innerWidth
+
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
@@ -22,7 +25,7 @@ export default function Header() {
         <header>
             <div className="header-content">
                 <NavLink to="/">
-                    <img src={logo} alt="Logo" />
+                    <img style = {{ width: tamanoPantalla > tamanoMaximo ? 125 : 112.5 }} src={logo} />
                 </NavLink>
             </div>
             <nav className={menuOpen ? 'open' : ''}>

@@ -316,10 +316,10 @@ export default function NivelB() {
                                                 slidesToShow={window.innerWidth <= windWith ? 1 : 3}
                                                 scrollOnDevice={false}
                                             >
-                                                <div style={{ width: '97.5%', textAlign: 'center' }}>
+                                                <div style={{ width: '95.5%', textAlign: 'center' }}>
                                                     <img id='domicilio' className='miniIconos' style={{ width: '245px', height: '342px' }} src={detalleA.ImagenFrontal} />
                                                 </div>
-                                                <div style={{ width: '97.5%', textAlign: 'center' }}>
+                                                <div style={{ width: '95.5%', textAlign: 'center' }}>
                                                     <img id='domicilio' className='miniIconos' style={{ width: '245px', height: '342px' }} src={detalleA.ImagenPosterior} />
                                                 </div>
                                             </InfiniteCarousel>

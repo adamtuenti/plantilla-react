@@ -16,10 +16,20 @@
   
   .imagenA {
     width: 100%;
-    height: 85% !important;
+    height: 85%;
     background-size: cover;
     background-position: center;
     transition: background-image 0.3s ease-in-out; /* Agregado para la transición de imagen */
+  }
+
+  @media (max-width: 750px) {
+    .imagenA {
+      height: 97.5% !important;
+    }
+
+    .seleccione {
+      text-align: center !important;
+    }
   }
   
   .seleccione {
