@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../hooks/useContext';
 import { Col, Row, Card, Button } from 'react-bootstrap';
 import jsPDF from 'jspdf';
-import logo from "../../share/images/logo.png";
+import logo from "../../share/images/logoZeusNegro.png";
 import { BsFillArchiveFill } from "react-icons/bs";
 import 'jspdf-autotable';
 import html2pdf from 'html2pdf.js';

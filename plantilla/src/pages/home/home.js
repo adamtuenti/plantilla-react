@@ -134,7 +134,7 @@ export default function Home() {
                                             }}
                                             src={dato.Imagen}
                                             alt={dato.Titulo}
-                                            onClick={() => { history('/hombres/paso2', { state: { data: { Titulo: dato.Titulo, Id: dato.Id } } }) }}
+                                            onClick={() => { history('/hombres/paso2', { state: { data: dato } }) }}
                                         />
                                         <p style={{ fontSize: '17.75px', marginTop: '14.5px' }}>{dato.Titulo}</p>
                                     </div>

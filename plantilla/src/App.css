@@ -77,3 +77,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
+
+
+/* App.css */
+.boton-fijo-container {
+  position: fixed;
+  bottom: 20px; /* Ajusta la distancia desde la parte inferior según tu preferencia */
+  right: 20px; /* Ajusta la distancia desde la derecha según tu preferencia */
+  z-index: 1000; /* Ajusta el índice z para que esté por encima de otros elementos */
+}
+

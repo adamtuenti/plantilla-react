@@ -1,0 +1,46 @@
+.seleccioneColorPeque {
+    text-align: center;
+    font-size: 19.5px !important;
+    font-style: italic
+}
+
+
+
+.bottonB {
+    width: 254.5px;
+    height: 225px;
+    background-color: transparent !important;
+    border-color: black;
+    padding: 14.5px;
+    margin-right: 35.5px !important;
+}
+
+.imagenB {
+    width: 225px;
+    height: 172px;
+}
+
+
+
+
+
+
+
+
+.seleccione {
+    font-size: 19.5px;
+    text-align: left !important;
+    font-style: italic;
+    margin-bottom: 12.5px;
+}
+
+
+
+
+.seleccioneMujeres {
+    margin-top: 45.5px;
+    font-size: 19.5px;
+    text-align: left;
+    font-style: italic;
+    line-height: 24.5px;
+}

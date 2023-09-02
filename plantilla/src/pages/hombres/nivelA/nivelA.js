@@ -30,17 +30,17 @@ export default function NivelA() {
     return (
         <div style={{ paddingBottom: '34.5px' }}>
             <div
-  style={{
-    backgroundImage: `url(${tamanoPantalla < tamanoMaximo ? PortadaPequena : Portada})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    width: '100%',
-    height: `${tamanoPantalla < tamanoMaximo ? '457px' : '550px'}`,
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: '24.5px',
-  }}
-></div>
+                style={{
+                    backgroundImage: `url(${tamanoPantalla < tamanoMaximo ? PortadaPequena : Portada})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    width: '100%',
+                    height: `${tamanoPantalla < tamanoMaximo ? '457px' : '550px'}`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    paddingLeft: '24.5px',
+                }}
+            ></div>
 
             <div style={{ paddingLeft: '24.5px', paddingRight: '24.5px' }}>
                 <p className='seleccione'>Para él</p>
